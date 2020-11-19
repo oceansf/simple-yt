@@ -9,16 +9,20 @@ const StyledContainer = styled(Container)`
 	height: 100vh;
 `;
 
-const Home = () => {
+const Header = styled(Typography)`
+	margin: 1rem 0;
+`;
+
+const Home = ({ getResults }) => {
 	return (
 		<StyledContainer>
 			<Box textAlign="center">
-				<Typography variant="h1">Simple YT</Typography>
+				<Header variant="h1">Simple YT</Header>
 				<Typography variant="subtitle1">
 					YouTube without the distracting algorithms
 				</Typography>
 			</Box>
-			<Searchbar />
+			<Searchbar getResults={getResults} />
 		</StyledContainer>
 	);
 };

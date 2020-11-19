@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Paper, Box, TextField, Button } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
@@ -14,7 +14,13 @@ const StyledButton = styled(Button)`
 	padding: 0 2rem;
 `;
 
-const SearchBar = () => {
+const SearchBar = ({ getResults }) => {
+	const [text, setText] = useState('');
+
+	const handleTextChange = (e) => {
+		setText(e.target.value);
+	};
+
 	return (
 		<StyledPaper elevation={3} square>
 			<Box display="flex" pl={2}>
@@ -26,8 +32,13 @@ const SearchBar = () => {
 					InputProps={{
 						disableUnderline: true,
 					}}
+					onChange={handleTextChange}
 				/>
-				<StyledButton variant="contained" disableElevation>
+				<StyledButton
+					variant="contained"
+					disableElevation
+					onClick={() => getResults(text)}
+				>
 					<SearchIcon />
 				</StyledButton>
 			</Box>

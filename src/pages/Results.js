@@ -1,10 +1,18 @@
 import React from 'react';
+import { Container, Box, Typography } from '@material-ui/core';
 
-const Results = () => {
+import Searchbar from '../components/SearchBar';
+import ResultsList from '../components/ResultsList';
+
+const Results = ({ searchResults, getResults }) => {
 	return (
-		<div>
-			<h1>Results Page</h1>
-		</div>
+		<Container>
+			<Searchbar getResults={getResults} />
+			<Box textAlign="center">
+				<Typography variant="h2">Results</Typography>
+				<ResultsList searchResults={searchResults} />
+			</Box>
+		</Container>
 	);
 };
 
