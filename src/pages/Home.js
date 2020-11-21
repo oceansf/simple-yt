@@ -5,7 +5,7 @@ import { Container, Box, Typography } from '@material-ui/core';
 import Searchbar from '../components/SearchBar';
 
 const StyledContainer = styled(Container)`
-	padding-top: 25%;
+	padding-top: 25vh;
 	height: 100vh;
 `;
 

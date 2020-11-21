@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Paper, Box, TextField, Button } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
@@ -21,28 +21,34 @@ const SearchBar = ({ getResults }) => {
 		setText(e.target.value);
 	};
 
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		if (text !== '') {
+			getResults(text);
+		}
+	};
+
 	return (
-		<StyledPaper elevation={3} square>
-			<Box display="flex" pl={2}>
-				<TextField
-					variant="standard"
-					placeholder="Search"
-					margin="dense"
-					fullWidth
-					InputProps={{
-						disableUnderline: true,
-					}}
-					onChange={handleTextChange}
-				/>
-				<StyledButton
-					variant="contained"
-					disableElevation
-					onClick={() => getResults(text)}
-				>
-					<SearchIcon />
-				</StyledButton>
-			</Box>
-		</StyledPaper>
+		<form onSubmit={handleSubmit}>
+			<StyledPaper elevation={3} square>
+				<Box display="flex" pl={2}>
+					<TextField
+						variant="standard"
+						placeholder="Search"
+						margin="dense"
+						fullWidth
+						InputProps={{
+							disableUnderline: true,
+						}}
+						value={text}
+						onChange={handleTextChange}
+					/>
+					<StyledButton type="submit" variant="contained" disableElevation>
+						<SearchIcon />
+					</StyledButton>
+				</Box>
+			</StyledPaper>
+		</form>
 	);
 };
 

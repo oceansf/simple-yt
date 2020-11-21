@@ -1,17 +1,22 @@
 import React from 'react';
+
 import styled from 'styled-components';
 import { Box, Typography } from '@material-ui/core';
 
-const ChannelThumbnail = styled.img`
-	border-radius: 50%;
+const Thumbnail = styled.img`
+	border-radius: ${(props) => (props.channel ? '50%' : null)};
 	cursor: pointer;
 `;
 
-const VideoThumbnail = styled.img`
-	cursor: pointer;
-`;
-
-const ResultsItem = ({ kind, title, channel, description, imgURL }) => {
+const ResultsItem = ({
+	kind,
+	title,
+	channel,
+	description,
+	imgURL,
+	videoId,
+	setActiveVideoId,
+}) => {
 	return (
 		<Box
 			display="flex"
@@ -20,13 +25,16 @@ const ResultsItem = ({ kind, title, channel, description, imgURL }) => {
 				borderBottom: '1px solid lightgrey',
 			}}
 		>
-			{kind === 'youtube#channel' ? (
-				<ChannelThumbnail src={imgURL} alt={title} />
-			) : (
-				<VideoThumbnail src={imgURL} alt={title} />
-			)}
+			{/* TODO: Add a channel route and component */}
+
+			<Thumbnail
+				src={imgURL}
+				channel={kind === 'youtube#channel' ? true : false}
+				onClick={() => setActiveVideoId(videoId)}
+			/>
+
 			<Box textAlign="left" pl={2}>
-				<Typography variant="h4">{title}</Typography>
+				<Typography variant="h6">{title}</Typography>
 				{kind === 'youtube#channel' ? null : (
 					<Typography variant="subtitle2">{channel}</Typography>
 				)}
